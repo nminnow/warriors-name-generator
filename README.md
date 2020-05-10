@@ -4,8 +4,7 @@ A Clan cats' name generator based on Erin Hunter's *[Warriors]* book series.
 
 It will randomly generate a name in the format of `Prefixsuffix`, where all
 prefixes and suffixes comes from cats of the official *Warriors* universe. Data
-is collected from [Crystal Pool] (a structured knowledge-base) and will be
-updated periodically.
+is collected from [Crystal Pool] and will be updated periodically.
 
 Published site: https://nminnow.github.io/warriors-name-generator/.
 
