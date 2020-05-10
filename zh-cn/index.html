@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>猫武士名生成器</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+  <body>
+    <header class="mb-5">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="./">猫武士名生成器</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse"  id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                语言
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="./">中文（中国大陆）</a>
+                <a class="dropdown-item" href="../zh-tw/">中文（台灣）</a>
+                <a class="dropdown-item" href="../en/" aria-disabled="true">English</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./about/">关于</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main role="main" class="container">
+      <h1 class="mb-4" id="displayName"></h1>
+      <button class="btn btn-primary" type="button" onclick="generateName()">
+        下一个
+      </button>
+      <hr class="my-4" />
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="includeUnderage" onclick="changeIncludeUnderage()">
+        <label class="custom-control-label" for="includeUnderage">
+          允许幼崽和学徒名
+        </label>
+      </div>
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="ignoreWeighting" onclick="changeIgnoreWeighting()">
+        <label class="custom-control-label" for="ignoreWeighting">
+          忽略词缀比重
+        </label>
+      </div>
+    </main>
+
+    <script src="../data/zh-cn.js"></script>
+    <script>
+      const basePrefixes = data.prefixes;
+      const baseSuffixes = data.suffixes;
+      const totalApprentices = data.apprentices;
+      const totalKits = data.kits;
+      const unweightedPrefixes = [...new Set(basePrefixes)];
+      const unweightedSuffixes = [...new Set(baseSuffixes)];
+      let prefixes = basePrefixes;
+      let suffixes = baseSuffixes;
+      function changeIncludeUnderage() {
+        document.getElementById("ignoreWeighting").disabled = document.getElementById("includeUnderage").checked ? true : false;
+      }
+      function changeIgnoreWeighting() {
+        document.getElementById("includeUnderage").disabled = document.getElementById("ignoreWeighting").checked ? true : false;
+        prefixes = document.getElementById("ignoreWeighting").checked ? basePrefixes : unweightedPrefixes;
+        suffixes = document.getElementById("ignoreWeighting").checked ? baseSuffixes : unweightedSuffixes;
+      }
+      function generateName() {
+        const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+        let suffix;
+        let kit = false;
+        if (document.getElementById("includeUnderage").checked) {
+          const s = Math.floor(Math.random() * (suffixes.length + totalApprentices + totalKits));
+          if (s < suffixes.length) {
+            suffix = suffixes[s];
+          } else if (s < suffixes.length + totalApprentices) {
+            suffix = "爪";
+          } else {
+            console.log('kit');
+            kit = true;
+          }
+        } else {
+          suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+        }
+        const name = kit ? "小" + prefix : prefix + suffix;
+        document.getElementById("displayName").innerHTML = name;
+      }
+      generateName();
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>

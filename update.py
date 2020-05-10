@@ -33,8 +33,8 @@ for row in query_en:
         kits_en += 1
     else:
         suffixes_en.append(row.suffix.value)
-with open('data/en.json', 'w') as fw_en:
-    fw_en.write(json.dumps({
+with open('data/en.js', 'w') as fw_en:
+    fw_en.write('const data = ' + json.dumps({
         'language': 'en',
         'prefixes': prefixes_en,
         'suffixes': suffixes_en,
@@ -63,15 +63,17 @@ for row in query_CN:
         prefixes_CN.append(specials_CN[row.translation.value][0])
         suffixes_CN.append(specials_CN[row.translation.value][1])
     else:
-        prefixes_CN.append(row.translation.value[:-1])
         if row.suffix.value == 'paw':
+            prefixes_CN.append(row.translation.value[:-1])
             apprentices_CN += 1
         elif row.suffix.value == 'kit':
+            prefixes_CN.append(row.translation.value[1:])
             kits_CN += 1
         else:
+            prefixes_CN.append(row.translation.value[:-1])
             suffixes_CN.append(row.translation.value[-1])
-with open('data/zh-cn.json', 'w') as fw_CN:
-    fw_CN.write(json.dumps({
+with open('data/zh-cn.js', 'w') as fw_CN:
+    fw_CN.write('const data = ' + json.dumps({
         'language': 'zh-cn',
         'prefixes': prefixes_CN,
         'suffixes': suffixes_CN,
@@ -99,15 +101,17 @@ for row in query_TW:
         prefixes_TW.append(specials_TW[row.translation.value][0])
         suffixes_TW.append(specials_TW[row.translation.value][1])
     else:
-        prefixes_TW.append(row.translation.value[:-1])
         if row.suffix.value == 'paw':
+            prefixes_TW.append(row.translation.value[:-1])
             apprentices_TW += 1
         elif row.suffix.value == 'kit':
+            prefixes_TW.append(row.translation.value[1:])
             kits_TW += 1
         else:
+            prefixes_TW.append(row.translation.value[:-1])
             suffixes_TW.append(row.translation.value[-1])
-with open('data/zh-tw.json', 'w') as fw_TW:
-    fw_TW.write(json.dumps({
+with open('data/zh-tw.js', 'w') as fw_TW:
+    fw_TW.write('const data = ' + json.dumps({
         'language': 'zh-tw',
         'prefixes': prefixes_TW,
         'suffixes': suffixes_TW,
