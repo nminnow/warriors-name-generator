@@ -47,8 +47,8 @@ suffixes_CN = []
 apprentices_CN = 0
 kits_CN = 0
 specials_CN = {
-    '回声之歌': ['回声', '之歌'],
-    '桦树皮': ['桦', '树皮']
+    '回声之歌': "prefixes_CN.append('回声'); suffixes_CN.append('之歌')",
+    '桦树皮': "prefixes_CN.append('桦'); suffixes_CN.append('树皮')"
 }
 query_CN = graph.query(
     '''SELECT ?translation ?suffix WHERE {
@@ -60,14 +60,16 @@ query_CN = graph.query(
     }''')
 for row in query_CN:
     if row.translation.value in specials_CN:
-        prefixes_CN.append(specials_CN[row.translation.value][0])
-        suffixes_CN.append(specials_CN[row.translation.value][1])
+        exec(specials_CN[row.translation.value])
     else:
         if row.suffix.value == 'paw':
             prefixes_CN.append(row.translation.value[:-1])
             apprentices_CN += 1
         elif row.suffix.value == 'kit':
-            prefixes_CN.append(row.translation.value[1:])
+            if row.translation.value[-1] == '崽':
+                prefixes_CN.append(row.translation.value[:-1])
+            else:
+                prefixes_CN.append(row.translation.value[1:])
             kits_CN += 1
         else:
             prefixes_CN.append(row.translation.value[:-1])
@@ -86,7 +88,7 @@ suffixes_TW = []
 apprentices_TW = 0
 kits_TW = 0
 specials_TW = {
-    '樺樹皮': ['樺', '樹皮']
+    '樺樹皮': "prefixes_TW.append('樺'); suffixes_TW.append('樹皮')"
 }
 query_TW = graph.query(
     '''SELECT ?translation ?suffix WHERE {
@@ -98,15 +100,17 @@ query_TW = graph.query(
     }''')
 for row in query_TW:
     if row.translation.value in specials_TW:
-        prefixes_TW.append(specials_TW[row.translation.value][0])
-        suffixes_TW.append(specials_TW[row.translation.value][1])
+        exec(specials_TW[row.translation.value])
     else:
         if row.suffix.value == 'paw':
             prefixes_TW.append(row.translation.value[:-1])
             apprentices_TW += 1
         elif row.suffix.value == 'kit':
-            prefixes_TW.append(row.translation.value[1:])
-            kits_TW += 1
+            if row.translation.value[-1] == '崽':
+                prefixes_TW.append(row.translation.value[:-1])
+            else:
+                prefixes_TW.append(row.translation.value[1:])
+            kits_CN += 1
         else:
             prefixes_TW.append(row.translation.value[:-1])
             suffixes_TW.append(row.translation.value[-1])
