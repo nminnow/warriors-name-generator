@@ -10,12 +10,9 @@ updated periodically.
 Published site: https://nminnow.github.io/warriors-name-generator/.
 
 Currently available in
-* [English][wng/en],
-* [中文（中国大陆）][wng/zh-cn], and
-* [中文（台灣）][wng/zh-tw]!
+* [English](https://nminnow.github.io/warriors-name-generator/en/),
+* [中文（中国大陆）](https://nminnow.github.io/warriors-name-generator/zh-cn/), and
+* [中文（台灣）](https://nminnow.github.io/warriors-name-generator/zh-tw/)!
 
 [Warriors]: https://warriorcats.com/
 [Crystal Pool]: https://crystalpool.cxuesong.com/
-[wng/en]: https://nminnow.github.io/warriors-name-generator/en/
-[wng/zh-cn]: https://nminnow.github.io/warriors-name-generator/zh-cn/
-[wng/zh-tw]: https://nminnow.github.io/warriors-name-generator/zh-tw/
