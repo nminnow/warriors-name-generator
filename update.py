@@ -5,14 +5,14 @@ import ssl
 import urllib.request
 import rdflib
 
+graph = rdflib.Graph()
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
-
-graph = rdflib.Graph()
-graph.parse(format='n3', data=urllib.request.urlopen(
+with urllib.request.urlopen(
     'https://raw.githubusercontent.com/crystal-pool/Dump/master/wbdump.ttl',
-    context=ctx).read().decode('utf-8'))
+    context=ctx) as dump:
+    graph.parse(format='n3', data=dump.read().decode('utf-8'))
 
 prefixes_en = []
 suffixes_en = []
@@ -52,11 +52,11 @@ specials_CN = {
 }
 query_CN = graph.query(
     '''SELECT ?translation ?suffix WHERE {
-        ?cat  wdt:P3  wd:Q622 .
-        ?cat  p:P84  ?name .
-        ?name  pq:P85  ?translation .
-        ?name  pq:P111  ?suffix .
-        FILTER (lang(?translation) = 'zh-cn')
+        ?cat wdt:P3 wd:Q622 .
+        ?cat p:P84 ?name .
+        ?name pq:P85 ?translation .
+        ?name pq:P111 ?suffix .
+        FILTER ( lang(?translation) = 'zh-cn' )
     }''')
 for row in query_CN:
     if row.translation.value in specials_CN:
@@ -92,11 +92,11 @@ specials_TW = {
 }
 query_TW = graph.query(
     '''SELECT ?translation ?suffix WHERE {
-        ?cat  wdt:P3  wd:Q622 .
-        ?cat  p:P84  ?name .
-        ?name  pq:P85  ?translation .
-        ?name  pq:P111  ?suffix .
-        FILTER (lang(?translation) = 'zh-tw')
+        ?cat wdt:P3 wd:Q622 .
+        ?cat p:P84 ?name .
+        ?name pq:P85 ?translation .
+        ?name pq:P111 ?suffix .
+        FILTER ( lang(?translation) = 'zh-tw' )
     }''')
 for row in query_TW:
     if row.translation.value in specials_TW:
