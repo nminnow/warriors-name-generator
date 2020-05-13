@@ -20,10 +20,9 @@ apprentices_en = 0
 kits_en = 0
 query_en = graph.query(
     '''SELECT ?prefix ?suffix WHERE {
-        ?cat  wdt:P3  wd:Q622 .
-        ?cat  p:P84  ?name .
-        ?name  pq:P110  ?prefix .
-        ?name  pq:P111  ?suffix .
+        [ wdt:P3 wd:Q622 ] p:P84 ?name .
+        ?name pq:P110 ?prefix .
+        ?name pq:P111 ?suffix .
     }''')
 for row in query_en:
     prefixes_en.append(row.prefix.value)
@@ -52,11 +51,10 @@ specials_CN = {
 }
 query_CN = graph.query(
     '''SELECT ?translation ?suffix WHERE {
-        ?cat wdt:P3 wd:Q622 .
-        ?cat p:P84 ?name .
+        [ wdt:P3 wd:Q622 ] p:P84 ?name .
         ?name pq:P85 ?translation .
         ?name pq:P111 ?suffix .
-        FILTER ( lang(?translation) = 'zh-cn' )
+        FILTER ( lang(?translation) = "zh-cn" )
     }''')
 for row in query_CN:
     if row.translation.value in specials_CN:
@@ -92,11 +90,10 @@ specials_TW = {
 }
 query_TW = graph.query(
     '''SELECT ?translation ?suffix WHERE {
-        ?cat wdt:P3 wd:Q622 .
-        ?cat p:P84 ?name .
+        [ wdt:P3 wd:Q622 ] p:P84 ?name .
         ?name pq:P85 ?translation .
         ?name pq:P111 ?suffix .
-        FILTER ( lang(?translation) = 'zh-tw' )
+        FILTER ( lang(?translation) = "zh-tw" )
     }''')
 for row in query_TW:
     if row.translation.value in specials_TW:
