@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-cn">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -35,12 +35,16 @@
 
     <main role="main" class="container">
       <h1>关于</h1>
-      <p>一个基于艾琳·亨特所著的《猫武士》系列小说的猫名生成器。</p>
-      <p>数据来自<a href="https://warriors.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5">水晶池</a>，最后更新于2020年5月。</p>
+      <p>一个基于艾琳 · 亨特所著的《猫武士》系列小说的族群猫名生成器。</p>
+      <p>数据收集自<a href="https://crystalpool.cxuesong.com/">水晶池</a>并经过处理。最后更新于<span id="lastUpdated"></span>。</p>
     </main>
 
+    <script src="../../data/zh-cn.js"></script>
+    <script>
+      document.getElementById("lastUpdated").innerHTML =
+        data.date.year + '年' + data.date.month + '月' + data.date.day + '日';
+    </script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
 </html>

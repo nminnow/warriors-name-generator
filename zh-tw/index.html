@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-tw">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -63,19 +63,24 @@
       let prefixes = basePrefixes;
       let suffixes = baseSuffixes;
       function changeIncludeUnderage() {
-        document.getElementById("ignoreWeighting").disabled = document.getElementById("includeUnderage").checked ? true : false;
+        document.getElementById("ignoreWeighting").disabled =
+          document.getElementById("includeUnderage").checked;
       }
       function changeIgnoreWeighting() {
-        document.getElementById("includeUnderage").disabled = document.getElementById("ignoreWeighting").checked ? true : false;
-        prefixes = document.getElementById("ignoreWeighting").checked ? basePrefixes : unweightedPrefixes;
-        suffixes = document.getElementById("ignoreWeighting").checked ? baseSuffixes : unweightedSuffixes;
+        document.getElementById("includeUnderage").disabled =
+          document.getElementById("ignoreWeighting").checked;
+        prefixes = document.getElementById("ignoreWeighting").checked ?
+          basePrefixes : unweightedPrefixes;
+        suffixes = document.getElementById("ignoreWeighting").checked ?
+          baseSuffixes : unweightedSuffixes;
       }
       function generateName() {
         const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
         let suffix;
         let kit = false;
         if (document.getElementById("includeUnderage").checked) {
-          const s = Math.floor(Math.random() * (suffixes.length + totalApprentices + totalKits));
+          const s = Math.floor(Math.random() *
+            (suffixes.length + totalApprentices + totalKits));
           if (s < suffixes.length) {
             suffix = suffixes[s];
           } else if (s < suffixes.length + totalApprentices) {
@@ -92,7 +97,6 @@
       generateName();
     </script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
 </html>
