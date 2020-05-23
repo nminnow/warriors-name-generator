@@ -36,7 +36,7 @@ for row in query_en:
         kits_en += 1
     else:
         suffixes_en.append(row.suffix.value)
-with open('en/data.js', 'w') as fw_en:
+with open('data/en.js', 'w') as fw_en:
     fw_en.write('const data = ' + json.dumps({
         'language': 'en',
         'date': {
@@ -82,7 +82,7 @@ for row in query_CN:
         else:
             prefixes_CN.append(row.translation.value[:-1])
             suffixes_CN.append(row.translation.value[-1])
-with open('zh-cn/data.js', 'w') as fw_CN:
+with open('data/zh-cn.js', 'w') as fw_CN:
     fw_CN.write('const data = ' + json.dumps({
         'language': 'zh-cn',
         'date': {
@@ -127,7 +127,7 @@ for row in query_TW:
         else:
             prefixes_TW.append(row.translation.value[:-1])
             suffixes_TW.append(row.translation.value[-1])
-with open('zh-tw/data.js', 'w') as fw_TW:
+with open('data/zh-tw.js', 'w') as fw_TW:
     fw_TW.write('const data = ' + json.dumps({
         'language': 'zh-tw',
         'date': {
