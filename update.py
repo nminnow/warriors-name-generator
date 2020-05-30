@@ -55,7 +55,6 @@ suffixes_CN = []
 apprentices_CN = 0
 kits_CN = 0
 specials_CN = {
-    '回声之歌': "prefixes_CN.append('回声'); suffixes_CN.append('之歌')",
     '桦树皮': "prefixes_CN.append('桦'); suffixes_CN.append('树皮')"
     }
 query_CN = graph.query(
